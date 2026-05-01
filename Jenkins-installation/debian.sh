@@ -274,9 +274,11 @@ main() {
   install_java_21
   setup_jenkins_repo
   install_jenkins
-
-  stop_jenkins_if_running
-
+  
+  sleep 7
+  systemctl stop jenkins || true
+  sleep 5
+  
   if is_port_in_use_by_other_process "$JENKINS_PORT"; then
     echo "Port $JENKINS_PORT is used by another process."
     echo "Switching Jenkins to fallback port $JENKINS_FALLBACK_PORT"
