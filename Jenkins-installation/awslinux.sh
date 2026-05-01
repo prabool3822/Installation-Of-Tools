@@ -222,7 +222,9 @@ main() {
   add_jenkins_repo
   install_jenkins
 
-  stop_jenkins_if_running
+  sleep 7
+  systemctl stop jenkins || true
+  sleep 5
 
   if port_in_use_by_other_process "$JENKINS_PORT"; then
     echo "Port $JENKINS_PORT is used by another process."
